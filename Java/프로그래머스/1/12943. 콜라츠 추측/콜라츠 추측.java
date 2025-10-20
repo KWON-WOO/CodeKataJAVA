@@ -2,22 +2,11 @@ class Solution {
     public int solution(int num) {
         long data = num;
         int answer = 0;
-        int i = 0;
-        while(true){
-            if (i == 500) {
-                answer = -1;
-                break;
-            }
-            else if (data == 1) break;
-            else{
-                if (data % 2 == 0)
-                    data /= 2;
-                else
-                    data = data * 3 + 1;
-                answer++;
-                i++;
-            }
+        for (int i = 0; i < 500; i++){
+            if (data == 1) return answer;
+            data = data%2==0 ? data/2 : data * 3 + 1;
+            answer++;
         }
-        return answer;
+        return -1;
     }
 }
