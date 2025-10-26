@@ -1,14 +1,13 @@
 class Solution {
     public boolean solution(String s) {
-        boolean answer = true;
-        if (!(s.length()== 4 || s.length() == 6))
-            return false;
-        char[] charArr = s.toCharArray();
-        for (char character: charArr) {
-            if (!(character <= '9' && character >= '0')) {
+        if (s.length()== 4 || s.length() == 6) {
+            try{
+            Integer.parseInt(s);
+                return true;
+            }catch(Exception e){
                 return false;
-            }
+            }    
         }
-        return true;
+        return false;
     }
 }
