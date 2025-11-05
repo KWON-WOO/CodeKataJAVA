@@ -1,7 +1,6 @@
 class Solution {
     public int solution(int a, int b, int n) {
-        int answer = returnValue(n,a,b,0);
-        return answer;
+        return returnValue(n,a,b,0);
     }
     
     //result = 반환받은 콜라 수
