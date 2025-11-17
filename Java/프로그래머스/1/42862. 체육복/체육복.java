@@ -2,39 +2,33 @@ import java.util.*;
 
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
-        int answer = n - lost.length;
-        boolean [] checkLost = new boolean[lost.length];
-        boolean [] checkReserve = new boolean[reserve.length];
-      
-        Arrays.sort(lost);
-        Arrays.sort(reserve);
+        int answer = n;
+        int [] students = new int[n];
+        
+        
+        
+        for (int i = 0; i < n; i++) {
+            students[i] = 0;
+        }
+        
+        for (int l: lost) {
+            --students[l - 1];    
+        }
+        
+        for (int r: reserve) {
+            ++students[r - 1];    
+        }
 
-        
-        for (int i = 0; i < lost.length; i++) {
-            for (int j = 0; j < reserve.length; j++) {
-                if (reserve[j] == lost[i]) {
-                    checkLost[i] = true;
-                    checkReserve[j] = true;
-                    break;
-                }
-                    
+        for (int l = 0; l < n; l++) {
+            if (students[l] == -1){
+                if (l - 1 >= 0 && students[l - 1] >= 1) {
+                    --students[l - 1];
+                    ++students[l];
+                } else if (l + 1 < n && students[l + 1] >= 1) {
+                    ++students[l];
+                    --students[l + 1];
+                } else --answer;
             }
-        }
-        
-        for (int i = 0; i < lost.length; i++) {
-            if (checkLost[i]) continue;
-            
-            for (int j = 0; j < reserve.length; j++) {
-                if (checkReserve[j]) continue;
-                if (reserve[j] - 1 == lost[i] || reserve[j] + 1 == lost[i]) {
-                    checkLost[i] = true;
-                    checkReserve[j] = true;
-                    break;
-                } 
-            }
-        }
-        for (int i = 0; i < checkLost.length; i++) {
-            if (checkLost[i]) ++answer;
         }
         return answer; 
     } 
