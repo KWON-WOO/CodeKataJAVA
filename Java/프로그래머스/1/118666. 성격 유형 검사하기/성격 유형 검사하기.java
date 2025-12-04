@@ -1,16 +1,14 @@
 class Solution {
     public String solution(String[] survey, int[] choices) {
         String answer = "";
+        char[] types = {'R','C','J','A'};
         int[] result = new int[]{0, 0, 0, 0};
         for (int i = 0; i < choices.length; ++i) {
-            if (survey[i].contains("R")){
-                result[0] += resultOfChoice(survey[i], 'R', choices[i]);
-            } else if (survey[i].contains("C")){
-                result[1] += resultOfChoice(survey[i], 'C', choices[i]);
-            } else if (survey[i].contains("J")){
-                result[2] += resultOfChoice(survey[i], 'J', choices[i]);
-            } else {
-                result[3] += resultOfChoice(survey[i], 'A', choices[i]);
+            for (int j = 0; j < types.length; ++j) {
+                if (survey[i].contains(String.valueOf(types[j]))){
+                    result[j] += resultOfChoice(survey[i], types[j], choices[i]);
+                    break;
+                }
             }
         }
         
